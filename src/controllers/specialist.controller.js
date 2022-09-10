@@ -33,13 +33,16 @@ module.exports.getAllPatientsFiles = async (req, res) => {
 
  module.exports.getPatient = async (req, res) => {
     if (!ObjectID.isValid(req.params.id))
+    {
         return res.status(400).send("ID unknown : " + req.params.id);
+    }
      UserModel.find({is_patient:true, _id:req.params.id}, (err, docs) => {
         if (!err)
         {
             res.status(200).send(docs);
         }
-        else {
+        else
+        {
             console.log("Error to get data : " + err);
         }
       });
@@ -83,7 +86,9 @@ module.exports.createAllergyFile = (req, res) => {
 
 module.exports.editPatientFile = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    {
+        return res.status(400).send("ID unknown : " + req.params.id);
+    }
     AllergieFileModel.findByIdAndUpdate(
         req.params.id,
         {
@@ -179,7 +184,6 @@ module.exports.unfollow = async (req, res) => {
         {$pull: {followers: req.params.id}},
         {new: true, upsert: true},
         (err, docs) =>{
-            // if (!err) res.status(200).send(docs);
             if (err) return res.status(400).send(err);
         }  
         
@@ -196,7 +200,6 @@ module.exports.unfollow = async (req, res) => {
         },
         { new: true, upsert: true, setDefaultsOnInsert: true },
         (err, docs) =>{
-            // if (!err) res.status(200).send(docs);
             if (err) return res.status(400).send(err);
         }    
     );

@@ -69,7 +69,10 @@ module.exports.editComment = (req, res) => {
 
   module.exports.deleteComment = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    {
+        return res.status(400).send("ID unknown : " + req.params.id);
+    }
+
 
   CommentModel.findByIdAndRemove(req.params.id, (err, docs) => {
     if (!err) res.status(200).json({message: "commentaire supprime !"});
