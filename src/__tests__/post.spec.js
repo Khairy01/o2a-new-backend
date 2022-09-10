@@ -141,7 +141,7 @@ describe("API Post", () => {
     });
 
     it("should delete a specific  given post", async () => {
-      response = await request(baseURL).delete("/"+post._id);
+      const response = await request(baseURL).delete("/"+post._id);
       expect(response.status).toEqual(200);
      });
   });

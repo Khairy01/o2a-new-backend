@@ -4,7 +4,10 @@ const CommentModel = require("../models/comment.model");
  
 module.exports.comment = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    {
+        return res.status(400).send("ID unknown : " + req.params.id);
+    }
+
 
     const newComment = new CommentModel({
         postId: req.params.id,
@@ -35,18 +38,27 @@ module.exports.editComment = (req, res) => {
         theComment.text = req.body.text;
   
         return docs.save((err) => {
-          if (!err) return res.status(200).send(docs);
-          return res.status(500).send(err);
+          if (!err) {
+              return res.status(200).send(docs);
+          }
+          else
+          {
+              return res.status(500).send(err);
+          }
+
         });
       });
     } catch (err) {
       return res.status(400).send(err);
     }
   };
-//get all comments of a post
+
   module.exports.getPostComments = (req, res) => {
     if (!ObjectID.isValid(req.params.id))
-    return res.status(400).send("ID unknown : " + req.params.id);
+    {
+        return res.status(400).send("ID unknown : " + req.params.id);
+    }
+
 
     CommentModel.find({postId:req.params.id}, (err, docs) => {
         if (!err) res.status(200).send(docs);

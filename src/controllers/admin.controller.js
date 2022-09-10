@@ -57,7 +57,7 @@ module.exports.getRetiredAccounts = async (req, res, next) => {
 };
 
 module.exports.getAllAccounts = async (req, res, next) => {
-  const users = await UserModel.find().select('-password');
+  const users = await dispatch(UserModel.find().select('-password')) ;
   res.status(200).json({users});
   next();
 };

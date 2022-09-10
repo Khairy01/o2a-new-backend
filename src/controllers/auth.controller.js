@@ -40,7 +40,7 @@ module.exports.signIn= async (req, res ) => {
     const {email, password} = req.body;
     
     try {
-        const user = await UserModel.findOne({ email:email });
+        const user = await dispatch(UserModel.findOne({ email:email }));
         if (user) {
             const auth = await bcrypt.compare(password, user.password);
             if (auth) {

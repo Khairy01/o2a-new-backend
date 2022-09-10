@@ -104,7 +104,7 @@ describe("API Comment Post", () => {
     });
 
     it("should delete a specific  given comment", async () => {
-      response = await request(baseURL).delete("/"+comment._id);
+      const response = await request(baseURL).delete("/"+comment._id);
       expect(response.status).toEqual(200);
      });
   });
