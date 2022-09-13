@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
   "scripts": {
     "start": " nodemon server",
     "build": "node server.js",
@@ -33,6 +32,7 @@
     "chai": "^4.3.6",
     "cross-env": "^7.0.3",
     "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.3",
     "mocha": "^10.0.0",
     "mongodb-memory-server": "^8.9.1",
     "supertest": "^6.2.4"
